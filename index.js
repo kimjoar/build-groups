@@ -1,5 +1,4 @@
 var parseTree = require('html-parse-tree');
-var _ = require('lodash');
 
 module.exports = function(html, callback) {
     parseTree(html, function(err, tree) {
@@ -15,7 +14,7 @@ function buildGroups(tree) {
 function findGroups(items, groups) {
     var build = null;
 
-    _.each(items, function(item) {
+    items.forEach(function(item) {
         if (item.type === 'comment') {
             if (isEndBuild(item.data)) {
                 if (build) {

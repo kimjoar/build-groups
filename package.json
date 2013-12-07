@@ -4,8 +4,7 @@
   "description": "Find builds from HTML",
   "main": "index.js",
   "dependencies": {
-    "html-parse-tree": "~0.0.2",
-    "lodash": "~2.4.1"
+    "html-parse-tree": "~0.0.2"
   },
   "devDependencies": {
     "mocha": "~1.15.1",
