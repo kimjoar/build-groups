@@ -13,24 +13,24 @@ function buildGroups(tree) {
 }
 
 function findGroups(items, groups) {
-    var current = null;
+    var build = null;
 
     _.each(items, function(item) {
         if (item.type === 'comment') {
             if (isEndBuild(item.data)) {
-                if (current) {
-                    groups.push(current);
-                    current = null;
+                if (build) {
+                    groups.push(build);
+                    build = null;
                 }
             } else {
-                var info = buildInfo(item.data);
-                if (info) current = info;
+                if (build) return;
+                var newBuild = buildInfo(item.data);
+                if (newBuild) build = newBuild;
             }
         } else if (item.type === 'tag') {
-            if (current && item.name === 'script') {
-                current.files.push(item.attrs.src);
-            } else if (current && item.name === 'link') {
-                current.files.push(item.attrs.href);
+            var name = item.name;
+            if (build && (name === 'script' || name === 'link')) {
+                build.files.push(item.attrs);
             } else {
                 findGroups(item.children, groups)
             }
@@ -42,14 +42,14 @@ function findGroups(items, groups) {
 
 function buildInfo(data) {
     var data = data.trim();
-    var comma = data.indexOf(":");
+    var sep = data.indexOf(":");
 
-    if (comma > 0 && data.substring(0, comma) === "build") {
-        var space = data.indexOf(" ", comma);
+    if (sep > 0 && data.substring(0, sep) === "build") {
+        var space = data.indexOf(" ", sep);
         var file = data.substring(space + 1)
 
         return {
-            type: data.substring(comma + 1, space),
+            type: data.substring(sep + 1, space),
             name: file,
             files: []
         }
