@@ -1,10 +1,5 @@
-var parseTree = require('html-parse-tree');
-
-module.exports = function(html, callback) {
-    parseTree(html, function(err, tree) {
-        if (err) callback(err);
-        callback(null, buildGroups(tree));
-    });
+module.exports = function(tree, callback) {
+    callback(null, buildGroups(tree));
 };
 
 function buildGroups(tree) {

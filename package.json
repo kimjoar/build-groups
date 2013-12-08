@@ -1,10 +1,10 @@
 {
   "name": "build-groups",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Find builds from HTML",
   "main": "index.js",
   "dependencies": {
-    "html-parse-tree": "~0.0.2"
+    "html-parse-tree": "~0.0.3"
   },
   "devDependencies": {
     "mocha": "~1.15.1",
