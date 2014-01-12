@@ -1,6 +1,6 @@
 {
   "name": "build-groups",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Find builds from HTML",
   "main": "index.js",
   "dependencies": {

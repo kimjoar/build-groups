@@ -1,5 +1,14 @@
+var htmlParseTree = require('html-parse-tree');
+
 module.exports = function(tree, callback) {
-    callback(null, buildGroups(tree));
+    if (typeof tree === 'string') {
+        htmlParseTree(tree, function(err, tree) {
+            if (err) return callback(err);
+            callback(null, buildGroups(tree));
+        });
+    } else {
+        callback(null, buildGroups(tree));
+    }
 };
 
 function buildGroups(tree) {
