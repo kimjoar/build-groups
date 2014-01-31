@@ -35,7 +35,7 @@ function findGroups(items, groups) {
             if (build && (name === 'script' || name === 'link')) {
                 build.files.push(item.attrs);
             } else {
-                findGroups(item.children, groups)
+                findGroups(item.children, groups);
             }
         }
     });
@@ -44,18 +44,18 @@ function findGroups(items, groups) {
 }
 
 function buildInfo(data) {
-    var data = data.trim();
+    data = data.trim();
     var sep = data.indexOf(":");
 
     if (sep > 0 && data.substring(0, sep) === "build") {
         var space = data.indexOf(" ", sep);
-        var file = data.substring(space + 1)
+        var file = data.substring(space + 1);
 
         return {
             type: data.substring(sep + 1, space),
             name: file,
             files: []
-        }
+        };
     }
 }
 
